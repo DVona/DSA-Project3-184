@@ -49,8 +49,8 @@ void CarData::loadDatatoVector() {
     }
 }
 
-CarTmp CarData::loadCar(ifstream* fileptr) {
-    CarTmp newCar;
+Car CarData::loadCar(ifstream* fileptr) {
+    Car newCar;
     string buffer;
     getline(*fileptr,newCar.make,',');
     getline(*fileptr,newCar.model,',');

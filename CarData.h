@@ -15,11 +15,11 @@ class CarData {
 public:
     CarData();
     ~CarData()=default;
-    vector<CarTmp> cars;
+    vector<Car> cars;
     void loadDatatoVector();
-    CarTmp loadCar(ifstream* fileptr);
+    Car loadCar(ifstream* fileptr);
 
-    set<string> sizeClasses{"Compact CarTmp","Sport Utility Vehicle","Two Seaters","Large Cars","Truck","Midsize Cars",
+    set<string> sizeClasses{"Compact Car","Sport Utility Vehicle","Two Seaters","Large Cars","Truck","Midsize Cars",
                             "Van","Special Purpose Vehicle","Station Wagon","NA"};
     set<string> driveLines{"Front-Wheel Drive","All-Wheel Drive","Rear-Wheel Drive","4-Wheel Drive",
                            "Part-time 4-Wheel Drive","4-Wheel or All-Wheel Drive","NA"};

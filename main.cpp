@@ -2,14 +2,14 @@
 #include <map>
 #include <vector>
 #include <bits/stdc++.h>
-
-class CarTmp {
+/*
+class Car {
 private:
     std::map<std::string, double> data;
     std::map<std::string, int> ranking;
 
 public:
-    CarTmp(const std::map<std::string, double>& newData) :
+    Car(const std::map<std::string, double>& newData) :
     data(newData) {}
 
     const std::map<std::string, double>& getData() const {
@@ -59,7 +59,7 @@ double calculateScore(const std::map<std::string, double>& userRankings, const s
     return totalScore;
 }
 
-std::string findBestCar(const std::vector<CarTmp>& cars, const std::map<std::string, double>& userRankings, const std::map<std::string, double>& weights) {
+std::string findBestCar(const std::vector<Car>& cars, const std::map<std::string, double>& userRankings, const std::map<std::string, double>& weights) {
     int highestOverallRank = -1;
     std::string bestCar;
 
@@ -79,7 +79,7 @@ std::string findBestCar(const std::vector<CarTmp>& cars, const std::map<std::str
             }
 
             // Set factor rank for the car
-            const_cast<CarTmp&>(cars[i]).setFactorRank(factor.first, factorRank);
+            const_cast<Car&>(cars[i]).setFactorRank(factor.first, factorRank);
         }
 
         // Calculate overall rank for the car
@@ -87,14 +87,14 @@ std::string findBestCar(const std::vector<CarTmp>& cars, const std::map<std::str
 
         if (overallRank > highestOverallRank) {
             highestOverallRank = overallRank;
-            bestCar = "CarTmp " + std::to_string(i + 1);
+            bestCar = "Car " + std::to_string(i + 1);
         }
     }
 
     return bestCar;
 }
 
-int main() {
+int smain() {
     std::map<std::string, double> userRankings;
 
     // Get user rankings
@@ -106,7 +106,7 @@ int main() {
     }
 
     // Predefined car data
-    std::vector<CarTmp> cars = {
+    std::vector<Car> cars = {
             { {{"mpg", 30}, {"year", 2011}, {"mileage", 15000}} },
             { {{"mpg", 25}, {"year", 2020}, {"mileage", 20000}} },
             // Add more cars as needed
@@ -119,7 +119,7 @@ int main() {
 
     return 0;
 }
-/*
+*/
 // Main function to test data import and runtime
 #include "CarData.h"
 int main(){
@@ -132,12 +132,11 @@ int main(){
     start = end;
     for (Car car : dataset.cars){
         for (pair<string,int> ranking : car.rankings){
-            cout << ranking.first << " " << ranking.second << " ";
+            //cout << ranking.first << " " << ranking.second << " ";
         }
-        cout << endl;
+        //cout << endl;
     }
     time(&end);
     cout << end - start << endl;
     return 0;
 }
-*/
