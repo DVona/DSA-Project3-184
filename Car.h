@@ -56,7 +56,7 @@ public:
 
     float mpg1; // mpg for primary fuel type
     float mpg2; // mpg for secondary fuel type or blended mpg for hybrid cars
-    map<string,int> rankings;
+    map<string,int> rankings; //car[0].rankings["year"]
 };
 
 #endif //DSAPROJ3_CAR_H
