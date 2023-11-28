@@ -5,6 +5,7 @@
 #define DSAPROJ3_CAR_H
 #include <string>
 #include <tuple>
+#include <map>
 using namespace std;
 // Data URL:
 // https://public.opendatasoft.com/explore/dataset/all-vehicles-model/api/?sort=modifiedon&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiQVZHIiwieUF4aXMiOiJiYXJyZWxzMDgiLCJzY2llbnRpZmljRGlzcGxheSI6dHJ1ZSwiY29sb3IiOiJyYW5nZS1jdXN0b20ifV0sInhBeGlzIjoieWVhciIsIm1heHBvaW50cyI6IiIsInRpbWVzY2FsZSI6InllYXIiLCJzb3J0IjoiIiwic2VyaWVzQnJlYWtkb3duIjoiZnVlbHR5cGUiLCJjb25maWciOnsiZGF0YXNldCI6ImFsbC12ZWhpY2xlcy1tb2RlbCIsIm9wdGlvbnMiOnsic29ydCI6Im1vZGlmaWVkb24ifX19XSwiZGlzcGxheUxlZ2VuZCI6dHJ1ZSwiYWxpZ25Nb250aCI6dHJ1ZX0%3D
@@ -26,29 +27,36 @@ public:
             return fuel1;
         }
     };
-
+    // Display variables, not used for search
     string make;
     string model;
-    int year;
-    string sizeClass; // size class of car. Set of options in CarData.h
     string baseModel; // base model of the car. Intended for the final display
+    int cylinders; // a few are NA and = 0
+    int gears;
+
+    // Qualitative variables for search
+    string sizeClass; // size class of car. Set of options in CarData.h
     bool hybrid = false;
     bool electric = false;
     string drive; // car's Drive Line. Set of options in CarData.h
+    bool automatic;
+    string fuel1; // primary fuel type
+    string fuel2; // secondary fuel type
+
+    // Quantatitive variables to be ranked for search
+    int year; // 40 year range 1984-2024
     int passengerSpace; // space for passengers (cubic feet) ~1/2 are NA and = 0
     int storageSpace; // space for luggage (cubic meters) ~1/2 are NA and = 0
-    int cylinders; // a few are NA and = 0
     float displacement; // Car engine's displacement, a few are NA and = 0
-    bool automatic;
-    int gears;
     int fuelEconScore; // fuel Economy score from 1-10, with 10 being ideal. ~2/3 of observations are NA and = -1
     int ghgScore; // greenhouse gas score from 1-10, with 10 being ideal. ~2/3 of observations are NA and = -1
     int savings; // estimated amount saved/lost compared to the average vehicle over 5 years ($)
-    string fuel1; // primary fuel type
-    string fuel2; // secondary fuel type
-    // Separate into gas vs electric?
+
+
+
     float mpg1; // mpg for primary fuel type
     float mpg2; // mpg for secondary fuel type or blended mpg for hybrid cars
+    map<string,int> rankings;
 };
 
 #endif //DSAPROJ3_CAR_H

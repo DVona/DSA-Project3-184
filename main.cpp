@@ -3,6 +3,13 @@
 
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    for (car : cars){
+        int runningtotal = 0;
+        runningtotal += car.mpgrnk * mpgpref;
+        if car.sizeclass == "suv"{
+
+        }
+        if runningtotal > bestcarranking
+    }
     return 0;
 }
