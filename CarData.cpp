@@ -154,7 +154,7 @@ Car CarData::loadCar(ifstream* fileptr) {
     }
     else{
         for (int i = 10; i > 0; i--){
-            if (newCar.ghgScore > yearQuantiles[i-1]){
+            if (newCar.ghgScore > ghgScoreQuantiles[i-1]){
                 newCar.rankings["ghgScore"] = i;
                 break;
             }
@@ -163,7 +163,7 @@ Car CarData::loadCar(ifstream* fileptr) {
     getline(*fileptr,buffer,'\n');
     newCar.savings = stoi(buffer);
     for (int i = 10; i > 0; i--){
-        if (newCar.savings > yearQuantiles[i-1]){
+        if (newCar.savings > savingsQuantiles[i-1]){
             newCar.rankings["savings"] = i;
             break;
         }
