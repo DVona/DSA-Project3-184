@@ -27,6 +27,9 @@ public:
             return fuel1;
         }
     };
+
+
+
     // Display variables, not used for search
     string make;
     string model;

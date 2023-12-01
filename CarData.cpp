@@ -39,6 +39,34 @@ CarData::CarData() {
         savingsQuantiles[i] = stoi(buffer);
     }
 }
+string CarData::getFuel(Car *x) {
+    if(x->hybrid ==true)
+        return "2";
+    if (x->electric == true)
+        return "1";
+    else
+        return "0";
+}
+
+string CarData::getDrive(Car *x) {
+    if(x->drive== "Front-Wheel Drive")
+        return "0";
+    if(x->drive== "All-Wheel Drive")
+        return "1";
+    if(x->drive== "Rear-Wheel Drive")
+        return "2";
+    if(x->drive== "4-Wheel Drive")
+        return "3";
+    if(x->drive== "Part-time 4-Wheel Drive")
+        return "4";
+    if(x->drive== "4-Wheel or All-Wheel Drive")
+        return "5";
+}
+vector<Car> CarData::getCar(){
+    return cars;
+}
+
+
 
 void CarData::loadDatatoVector() {
     ifstream file("carsData.csv");
@@ -51,6 +79,7 @@ void CarData::loadDatatoVector() {
 
 Car CarData::loadCar(ifstream* fileptr) {
     Car newCar;
+
     string buffer;
     getline(*fileptr,newCar.make,',');
     getline(*fileptr,newCar.model,',');
@@ -170,6 +199,7 @@ Car CarData::loadCar(ifstream* fileptr) {
     }
     return newCar;
 }
+
 
 
 

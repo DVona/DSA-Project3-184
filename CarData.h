@@ -12,12 +12,21 @@
 using namespace std;
 
 class CarData {
+
 public:
+    Car newCar;
     CarData();
     ~CarData()=default;
     vector<Car> cars;
     void loadDatatoVector();
     Car loadCar(ifstream* fileptr);
+
+    string getFuel(Car *x);
+    string getDrive(Car *x);
+    vector<Car> getCar();
+    int getPassengerSpaceScore();
+    int getYearScore();
+
 
     set<string> sizeClasses{"Compact Car","Sport Utility Vehicle","Two Seaters","Large Cars","Truck","Midsize Cars",
                             "Van","Special Purpose Vehicle","Station Wagon","NA"};
