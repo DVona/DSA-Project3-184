@@ -338,6 +338,9 @@ vector<string> CarTree::findCar(string params[]) {
                     }
                 }
             }
+            if (idealCars.empty()) {
+                break;
+            }
         }
     }
     vector<string> ret;
