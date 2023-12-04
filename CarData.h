@@ -34,7 +34,6 @@ public:
                            "Part-time 4-Wheel Drive","4-Wheel or All-Wheel Drive","NA"};
     set<string> fuelTypes{"Premium Gasoline", "Regular Gasoline", "Midgrade Gasoline", "Diesel", "Electricity",
                           "Natural Gas", "E85", "Propane", "NA"}; // "E85", "Propane", and "NA" are only in fuel2
-private:
     int yearQuantiles[11];
     int passSpaceQuantiles[11];
     int storSpaceQuantiles[11];

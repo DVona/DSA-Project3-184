@@ -1,71 +1,6 @@
-#include <iostream>
-#include <vector>
-#include "Car.cpp"
-
-using namespace std;
-
-/* TODO:
- *  1. Should change to use Car.cpp
- *  2. Search function should output vector full of Cars
- */
-
-class CarTree {
-
-private:
-    struct Car2 {
-        string name = "NA";
-        string driveTrain = "NA";
-        string Class = "NA";
-        string year = "NA";
-        string type = "NA";
-        string trans = "NA";
-        string pSpace = "NA";
-        string sSpace = "NA";
-        string engDisp = "NA";
-        string fuelEcon = "NA";
-        string ghg = "NA";
-        string savings = "NA";
-        string mpg1 = "NA";
-        string mpg2 = "NA";
-        string fuel1 = "NA";
-        string fuel2 = "NA";
-        Car2() = default;
-        Car2(string car[]) {
-            name = car[0] + " " + car[1];
-            driveTrain = car[2];
-            Class = car[3];
-            year = car[4];
-            type = car[5];
-            trans = car[6];
-            pSpace = car[7];
-            sSpace = car[8];
-            engDisp = car[9];
-            fuelEcon = car[10];
-            ghg = car[11];
-            savings = car[12];
-            mpg1 = car[13];
-            mpg2 = car[14];
-            fuel1 = car[15];
-            fuel2 = car[16];
-        }
-    };
-
-    struct Node {
-        string key;
-        Car2 data;
-        bool isLeaf;
-        vector<Node*> parent;
-        vector<Node*> childs;
-        ~Node() = default;
-        Node(bool isLeaf, vector<Node*> parent, string key) : isLeaf(isLeaf), parent(parent), key(key){}
-    };
-public:
-    Node *roots[8];
-    void createTree();
-    void insert(string carstr[]);
-    vector<string> findCar(string params[]);
-};
-
+#ifndef DSAPROJ3_CARTREE_CPP
+#define DSAPROJ3_CARTREE_CPP
+#include "CarTree.h"
 void CarTree::createTree() {
     string info[15] = {"driveTrain","class","year","type"/*gas,elec,hybrid*/,"transmission","passengerSpace","storageSpace","engnDisplacement"/*CCs*/,"fuelEcon","ghg","savings","mpg1","mpg2","fuel1","fuel2"};
     for(int i=0; i<15; i++) {
@@ -227,7 +162,7 @@ void CarTree::insert(string carstr[]) {
  * { DriveTrain, Class, Year, Type, Transmission, PSpace, SSpace,
  * displacment, fuelecon, ghg, savings, mpg1, mpg2, fuel1, fuel2 }
  * */
-vector<string> CarTree::findCar(string params[]) {
+vector<CarTree::Car2> CarTree::findCar(string params[]) {
     vector<Car2> idealCars;
     vector<Car2> tempCars;
     for(int i=0; i<15; i++) {
@@ -343,9 +278,12 @@ vector<string> CarTree::findCar(string params[]) {
             }
         }
     }
-    vector<string> ret;
+    /*vector<string> ret;
     for(auto car:idealCars) {
         ret.push_back(car.name);
     }
     return ret;
+    */
+    return idealCars;
 }
+#endif

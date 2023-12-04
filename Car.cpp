@@ -6,6 +6,8 @@
 #include <string>
 #include <tuple>
 #include <map>
+#include "CarTree.h"
+
 using namespace std;
 // Data URL:
 // https://public.opendatasoft.com/explore/dataset/all-vehicles-model/api/?sort=modifiedon&dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiQVZHIiwieUF4aXMiOiJiYXJyZWxzMDgiLCJzY2llbnRpZmljRGlzcGxheSI6dHJ1ZSwiY29sb3IiOiJyYW5nZS1jdXN0b20ifV0sInhBeGlzIjoieWVhciIsIm1heHBvaW50cyI6IiIsInRpbWVzY2FsZSI6InllYXIiLCJzb3J0IjoiIiwic2VyaWVzQnJlYWtkb3duIjoiZnVlbHR5cGUiLCJjb25maWciOnsiZGF0YXNldCI6ImFsbC12ZWhpY2xlcy1tb2RlbCIsIm9wdGlvbnMiOnsic29ydCI6Im1vZGlmaWVkb24ifX19XSwiZGlzcGxheUxlZ2VuZCI6dHJ1ZSwiYWxpZ25Nb250aCI6dHJ1ZX0%3D
@@ -13,7 +15,10 @@ class Car{
 
 public:
     Car() = default;
-    //Car(string make){this->make = make;
+    template <class Car2t>
+    void convertC2(Car2t car2);
+
+//Car(string make){this->make = make;
     //};
     ~Car() = default;
     float getMPG(){
@@ -61,5 +66,24 @@ public:
     float mpg1; // mpg for primary fuel type
     float mpg2 = 0; // mpg for secondary fuel type or blended mpg for hybrid cars
 };
+template <class Car2t>
+void Car::convertC2(Car2t car2) {
+    make = car2.name;
+    model = "";
+    drive = car2.driveTrain;
+    sizeClass= car2.Class;
+    year = stoi(car2.year);
+    automatic = car2.trans == "Automatic";
+    passengerSpace = stoi(car2.pSpace);
+    storageSpace = stoi(car2.sSpace);
+    displacement = stof(car2.engDisp);
+    fuelEconScore = stoi(car2.fuelEcon);
+    ghgScore = stoi(car2.ghg);
+    savings = stoi(car2.savings);
+    mpg1 = stof(car2.mpg1);
+    mpg2 = stof(car2.mpg2);
+    fuel1 = car2.fuel1;
+    fuel2 = car2.fuel2;
+}
 
 #endif //DSAPROJ3_CAR_CPP

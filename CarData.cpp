@@ -61,6 +61,8 @@ string CarData::getDrive(Car *x) {
         return "4";
     if(x->drive== "4-Wheel or All-Wheel Drive")
         return "5";
+    else
+        return "-1";
 }
 vector<Car> CarData::getCar(){
     return cars;

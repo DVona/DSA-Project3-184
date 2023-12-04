@@ -36,10 +36,10 @@ public:
             string drive_real = dataset.getDrive(&car);
             if(inputs[0] == drive_real)
                 rankscore+=50;
-            if(inputs[1]== dataset.getBuild(&car))
+            /*if(inputs[1]== dataset.getBuild(&car))
                 rankscore+=100;
             if(inputs[4] == dataset.gettransnsmision(&car))
-                rankscore+= 100;
+                rankscore+= 100;*/
 
             if(rankscore > maxscore){
                 maxscore = rankscore;
