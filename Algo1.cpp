@@ -10,7 +10,7 @@ using namespace std;
 class Algo1{
 public:
 
-    void algo1(string inputs[]){
+    Car algo1(string inputs[]){
         CarData dataset;
         dataset.loadDatatoVector();
 
@@ -46,7 +46,7 @@ public:
                 maxcar = car;
             }
         }
-        cout<< "You should get a " <<maxcar.year <<" "<<maxcar.make<<" "<< maxcar.model<< " because it has the highest score of: "<<maxscore<<endl;
+       return maxcar;
 
     }
 
