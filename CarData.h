@@ -16,7 +16,7 @@ class CarData {
 public:
     Car newCar;
     CarData();
-    ~CarData()=default;
+    ~CarData();
     vector<Car> cars;
     void loadDatatoVector();
     Car loadCar(ifstream* fileptr);
