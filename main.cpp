@@ -171,6 +171,7 @@ void drawButtons(RectangleShape* buttonRect, int stageNum, RenderWindow* window,
 
 int main(){
     CarData dataset;
+    dataset.loadDatatoVector();
     float windowWidth = 900;
     float windowHeight = 1500;
     RenderWindow windowObj(VideoMode(int(windowHeight),int(windowWidth)), "Car Selector");
@@ -205,7 +206,7 @@ int main(){
             "produces little green house gasses?",
             "will save you gas money?"};
     vector<vector<string>> qualitativeVars  =
-            {{"Gas",                     "Hybrid",                     "Electric"},
+            {{"Gas",                                          "Electric","Hybrid"},
              {"Compact\nCar",             "Sport\nUtility\nVehicle",      "Two\nSeater","Large\nCars","Truck","Midsize\nCars","Van",                     "Special\nPurpos\nVehicle",    "Station\nWagon","NA"},
              {"Automatic Transmission",  "Manual Transmission"},
              {"Front-Wheel\nDrive",       "All-Wheel\nDrive",            "Rear-Wheel\nDrive","4-Wheel\nDrive","Part-time\n4-Wheel\nDrive", "4-Wheel\nor\nAll-Wheel\nDrive", "NA"}};
@@ -276,15 +277,16 @@ int main(){
         }
         if (stageNum == 13 && noCar){
             noCar = false;
-            algoInputs[0] = qualData.at(3).at(selections[3]);
-            algoInputs[1] = qualData.at(1).at(selections[1]);
-            algoInputs[3] = qualitativeVars.at(0).at(selections[0]);
-            algoInputs[4] = qualitativeVars.at(2).at(selections[2]);
+
             for (int i = 0; i < 3; i++){
                 algoInputs[i+12] = "NA";
             }
             if (selections[12] == 1){
                 //Run Tree
+                algoInputs[0] = qualData.at(3).at(selections[3]);
+                algoInputs[1] = qualData.at(1).at(selections[1]);
+                algoInputs[3] = qualitativeVars.at(0).at(selections[0]);
+                algoInputs[4] = qualitativeVars.at(2).at(selections[2]);
                 algoInputs[2] = to_string(dataset.yearQuantiles[selections[4]]);
                 algoInputs[5] = to_string(dataset.passSpaceQuantiles[selections[6]]);
                 algoInputs[6] = to_string(dataset.storSpaceQuantiles[selections[7]]);
@@ -295,18 +297,27 @@ int main(){
                 algoInputs[11] = to_string(dataset.mpgQuantiles[selections[5]]);
                 CarTree carTree;
                 carTree.createTree();
+                vector<string> vec(17);
+                for (auto car:dataset.cars){
+                    car.getStringArr(vec);
+                    carTree.insert(vec);
+                }
                 vector<CarTree::Car2> cars = carTree.findCar(algoInputs);
                 bestCar.convertC2(cars[0]);
             }
             else{
                 //Run Ranking
+                algoInputs[0] = to_string(selections[3]);
+                algoInputs[1] = to_string(selections[1]);
+                algoInputs[3] = to_string(selections[0]);
+                algoInputs[4] = to_string(selections[2]);
                 algoInputs[11] = to_string(selections[5]);
                 algoInputs[2] = to_string(selections[4]);
                 for (int i = 5; i < 11; i++){
                     algoInputs[i] = to_string(selections[i+1]);
                 }
                 Algo1 rankingAlg;
-                bestCar = rankingAlg.algo1(algoInputs);
+                bestCar = rankingAlg.algo1(algoInputs, &dataset);
             }
         }
 

@@ -71,6 +71,6 @@ public:
     void createTree();
     void insert(vector<string>& carstr);
     vector<Car2> findCar(string params[]);
-    ~CarTree();
+    ~CarTree()=default;
 };
 #endif //DSAPROJ3_CARTREE_H

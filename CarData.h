@@ -16,13 +16,15 @@ class CarData {
 public:
     Car newCar;
     CarData();
-    ~CarData();
+    ~CarData()=default;
     vector<Car> cars;
     void loadDatatoVector();
     Car loadCar(ifstream* fileptr);
 
     string getFuel(Car *x);
     string getDrive(Car *x);
+    string getTransmission(Car *x);
+    string getBuild(Car *x);
     vector<Car> getCar();
     int getPassengerSpaceScore();
     int getYearScore();

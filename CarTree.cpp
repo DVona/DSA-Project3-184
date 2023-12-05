@@ -274,22 +274,29 @@ vector<CarTree::Car2> CarTree::findCar(string params[]) {
                 }
             }
             if (idealCars.empty()) {
-                break;
+                return tempCars;
+            }
+            else {
+                tempCars = idealCars;
             }
         }
     }
-    
+    /*vector<string> ret;
+    for(auto car:idealCars) {
+        ret.push_back(car.name);
+    }
+    return ret;
+    */
     return idealCars;
 }
-~CarTree() {
+/*
+CarTree::~CarTree() {
     for(auto root:roots) {
-        for(auto child:root.childs) {
-            for(auto car:child.childs) {
-                delete car;
-            }
+        for(auto child:root->childs) {
             delete child;
         }
         delete root;
     }
 }
+ */
 #endif

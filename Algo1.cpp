@@ -10,14 +10,12 @@ using namespace std;
 class Algo1{
 public:
 
-    Car algo1(string inputs[]){
-        CarData dataset;
-        dataset.loadDatatoVector();
+    Car algo1(string inputs[], CarData* dataset){
 
         int maxscore = 0;
-        Car maxcar = dataset.cars[0];
+        Car maxcar =  dataset->cars[0];
 
-        for (Car car : dataset.cars){
+        for (Car car :  dataset->cars){
 
             int rankscore = 0;
     //Quantitative variables
@@ -31,15 +29,15 @@ public:
             rankscore+=stoi(inputs[11]) *car.rankings["mpg"];
 
     //Qualitative variables
-            if(inputs[3] == dataset.getFuel(&car))
+            if(inputs[3] ==  dataset->getFuel(&car))
                 rankscore+=50;
-            string drive_real = dataset.getDrive(&car);
+            string drive_real =  dataset->getDrive(&car);
             if(inputs[0] == drive_real)
                 rankscore+=50;
-            /*if(inputs[1]== dataset.getBuild(&car))
+            if(inputs[1]==  dataset->getBuild(&car))
                 rankscore+=100;
-            if(inputs[4] == dataset.gettransnsmision(&car))
-                rankscore+= 100;*/
+            if(inputs[4] ==  dataset->getTransmission(&car))
+                rankscore+= 100;
 
             if(rankscore > maxscore){
                 maxscore = rankscore;

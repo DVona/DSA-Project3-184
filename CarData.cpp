@@ -47,6 +47,29 @@ string CarData::getFuel(Car *x) {
     else
         return "0";
 }
+string CarData::getBuild(Car *x) {
+    if (x->sizeClass == "Compact Car")
+        return "0";
+    if (x->sizeClass == "Sport Utility Vehicle")
+        return "1";
+    if (x->sizeClass == "Two Seaters")
+        return "2";
+    if (x->sizeClass == "Large Cars")
+        return "3";
+    if (x->sizeClass == "Truck")
+        return "4";
+    if (x->sizeClass == "Midsize Cars")
+        return "5";
+    if (x->sizeClass == "Van")
+        return "6";
+    if (x->sizeClass == "Special Purpose Vehicle")
+        return "7";
+    if (x->sizeClass == "Station Wagon")
+        return "7";
+    else{
+        return "-1";
+    }
+}
 
 string CarData::getDrive(Car *x) {
     if(x->drive== "Front-Wheel Drive")
@@ -61,9 +84,20 @@ string CarData::getDrive(Car *x) {
         return "4";
     if(x->drive== "4-Wheel or All-Wheel Drive")
         return "5";
-    else
+    else{
         return "-1";
+    }
 }
+
+string CarData::getTransmission(Car *x) {
+    if (x->automatic){
+        return "0";
+    }
+    else{
+        return "1";
+    }
+}
+
 vector<Car> CarData::getCar(){
     return cars;
 }
