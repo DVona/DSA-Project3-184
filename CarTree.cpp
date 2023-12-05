@@ -138,7 +138,7 @@ void CarTree::createTree() {
  * { Make, Model, DriveTrain, Class, Year, Type, Transmission, PSpace, SSpace,
  * displacment, fuelecon, ghg, savings, mpg1, mpg2, fuel1, fuel2 }
  * */
-void CarTree::insert(string carstr[]) {
+void CarTree::insert(vector<string>& carstr) {
     Car2 d = Car2(carstr);
     string Sparents[] = {d.driveTrain,d.Class,d.year,d.type,d.trans,d.pSpace,d.sSpace,d.engDisp,d.fuelEcon,d.ghg,d.savings,d.mpg1,d.mpg2,d.fuel1,d.fuel2};
     vector<Node*> temps;
@@ -278,12 +278,18 @@ vector<CarTree::Car2> CarTree::findCar(string params[]) {
             }
         }
     }
-    /*vector<string> ret;
-    for(auto car:idealCars) {
-        ret.push_back(car.name);
-    }
-    return ret;
-    */
+    
     return idealCars;
+}
+~CarTree() {
+    for(auto root:roots) {
+        for(auto child:root.childs) {
+            for(auto car:child.childs) {
+                delete car;
+            }
+            delete child;
+        }
+        delete root;
+    }
 }
 #endif
