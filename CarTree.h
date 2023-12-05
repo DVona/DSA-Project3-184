@@ -69,7 +69,7 @@ private:
 public:
     Node *roots[17];
     void createTree();
-    void insert(vector<string?& carstr);
+    void insert(vector<string>& carstr);
     vector<Car2> findCar(string params[]);
     ~CarTree();
 };
