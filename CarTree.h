@@ -36,7 +36,8 @@ public:
         string fuel1 = "NA";
         string fuel2 = "NA";
         Car2() = default;
-        Car2(string car[]) {
+        ~Car2() = default;
+        Car2(vector<string>& car) {
             name = car[0] + " " + car[1];
             driveTrain = car[2];
             Class = car[3];
@@ -66,9 +67,10 @@ private:
         Node(bool isLeaf, vector<Node*> parent, string key) : isLeaf(isLeaf), parent(parent), key(key){}
     };
 public:
-    Node *roots[8];
+    Node *roots[17];
     void createTree();
-    void insert(string carstr[]);
+    void insert(vector<string?& carstr);
     vector<Car2> findCar(string params[]);
+    ~Car() = default;
 };
 #endif //DSAPROJ3_CARTREE_H
